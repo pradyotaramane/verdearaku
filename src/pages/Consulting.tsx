@@ -71,6 +71,27 @@ const engagementModels = [
   },
 ];
 
+const caseStudies = [
+  {
+    icon: <Shield className="h-6 w-6" />,
+    company: "Deep Trace Cybernetics",
+    industry: "Defence & Cybersecurity",
+    result: "Helped the company acquire clientele for their security product in the defence sector through strategic positioning and targeted outreach.",
+  },
+  {
+    icon: <Cog className="h-6 w-6" />,
+    company: "Metros Export Outlet",
+    industry: "Retail & Security",
+    result: "Assisted in building a secure environment by strategically positioning security cameras and implementing comprehensive surveillance solutions.",
+  },
+  {
+    icon: <TrendingUp className="h-6 w-6" />,
+    company: "CourseVita",
+    industry: "EdTech & Software",
+    result: "Helped the company successfully deploy their products with multiple software companies through partnership development and integration support.",
+  },
+];
+
 export default function Consulting() {
   return (
     <>
@@ -155,20 +176,20 @@ export default function Consulting() {
             title="Case Studies"
             subtitle="Real results from our client engagements"
           />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[1, 2, 3].map((_, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {caseStudies.map((study, index) => (
               <div
                 key={index}
-                className="p-8 bg-card rounded-xl border border-border text-center"
+                className="p-8 bg-card rounded-xl border border-border hover:shadow-medium transition-all duration-300"
               >
-                <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mx-auto mb-4">
-                  <span className="text-muted-foreground font-serif text-lg">
-                    Coming Soon
-                  </span>
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary mb-4">
+                  {study.icon}
                 </div>
-                <p className="text-muted-foreground">
-                  Case study details will be available shortly.
-                </p>
+                <h3 className="font-serif text-lg font-semibold text-foreground mb-2">
+                  {study.company}
+                </h3>
+                <p className="text-sm text-primary font-medium mb-3">{study.industry}</p>
+                <p className="text-muted-foreground text-sm">{study.result}</p>
               </div>
             ))}
           </div>

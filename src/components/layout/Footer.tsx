@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
-import { Mail, Linkedin, Twitter } from "lucide-react";
+import { Mail } from "lucide-react";
 
 const quickLinks = [
   { name: "Consulting", href: "/consulting" },
   { name: "Partnerships", href: "/partnerships" },
   { name: "Products", href: "/products" },
-  { name: "Coffee Beans", href: "/coffee-beans" },
   { name: "About", href: "/about" },
   { name: "Contact", href: "/contact" },
 ];
@@ -73,23 +72,6 @@ export function Footer() {
               ))}
             </ul>
             
-            <h3 className="font-serif text-lg font-semibold mt-8 mb-4">Connect</h3>
-            <div className="flex space-x-4">
-              <a
-                href="#"
-                className="p-2 rounded-full bg-primary-foreground/10 hover:bg-primary-foreground/20 transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
-                className="p-2 rounded-full bg-primary-foreground/10 hover:bg-primary-foreground/20 transition-colors"
-                aria-label="Twitter"
-              >
-                <Twitter className="h-5 w-5" />
-              </a>
-            </div>
           </div>
         </div>
 
