@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { PartnerForm } from "@/components/forms/PartnerForm";
 import {
   Building2,
   ShoppingBag,
@@ -9,6 +10,7 @@ import {
   Users,
   Handshake,
   TrendingUp,
+  FileCheck,
 } from "lucide-react";
 
 const partnerSteps = [
@@ -32,6 +34,15 @@ const partnerSteps = [
     title: "Go Live",
     description: "Your products become available to our buyer network",
   },
+];
+
+const partnerBenefits = [
+  "Access to curated buyer network across multiple markets",
+  "Co-selling and distribution support",
+  "Market entry and expansion assistance",
+  "Transparent partnership terms",
+  "Dedicated partner success team",
+  "Marketing and promotional support",
 ];
 
 export default function Partnerships() {
@@ -82,9 +93,9 @@ export default function Partnerships() {
                 </li>
               </ul>
               <Button asChild variant="heroOutline" size="lg">
-                <Link to="/contact?category=Partnerships">
-                  Become a Partner <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
+                <a href="#partner-form">
+                  Apply as Partner <ArrowRight className="ml-2 h-4 w-4" />
+                </a>
               </Button>
             </div>
 
@@ -152,8 +163,43 @@ export default function Partnerships() {
         </div>
       </section>
 
+      {/* Partner Application Form */}
+      <section id="partner-form" className="section-padding bg-background scroll-mt-24">
+        <div className="container-main">
+          <div className="max-w-3xl mx-auto">
+            <div className="text-center mb-10">
+              <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
+                <FileCheck className="h-8 w-8 text-primary" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">
+                Become a Partner
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Fill out the form below and our team will review your application. 
+                We typically respond within 2 business days.
+              </p>
+            </div>
+
+            <div className="bg-card rounded-2xl p-6 md:p-10 shadow-medium border border-border">
+              <div className="mb-8 p-4 bg-secondary rounded-lg">
+                <h3 className="font-semibold text-foreground mb-3">Partner Benefits</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                  {partnerBenefits.map((benefit, index) => (
+                    <div key={index} className="flex items-start gap-2">
+                      <CheckCircle className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                      <span className="text-sm text-muted-foreground">{benefit}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <PartnerForm />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Stats */}
-      <section className="section-padding bg-background">
+      <section className="section-padding bg-secondary">
         <div className="container-main">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div className="p-8">

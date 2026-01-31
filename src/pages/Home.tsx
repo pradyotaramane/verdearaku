@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ServiceCard } from "@/components/ui/ServiceCard";
-import { CategoryCard } from "@/components/ui/CategoryCard";
 import { ContactForm } from "@/components/forms/ContactForm";
+import { ProductCarousel } from "@/components/home/ProductCarousel";
 import {
   Briefcase,
   Handshake,
@@ -16,9 +16,6 @@ import {
   ArrowRight,
 } from "lucide-react";
 import heroImage from "@/assets/hero-coffee-plantation.jpg";
-import fnbImage from "@/assets/fnb-products.jpg";
-import gymImage from "@/assets/ai-gym-equipment.jpg";
-import coffeeImage from "@/assets/coffee-beans.jpg";
 
 const services = [
   {
@@ -38,27 +35,6 @@ const services = [
     title: "Sourcing & Producer Connect",
     description:
       "Direct access to quality coffee beans and specialty suppliers from trusted producers worldwide.",
-  },
-];
-
-const categories = [
-  {
-    title: "F&B Products",
-    description: "Curated snacks, beverages, and packaged goods from quality partners",
-    href: "/products#fnb",
-    image: fnbImage,
-  },
-  {
-    title: "AI-based Gym Equipment",
-    description: "Smart strength, cardio, and sensor-enabled fitness technology",
-    href: "/products#gym",
-    image: gymImage,
-  },
-  {
-    title: "Coffee Bean Producers",
-    description: "Single-origin, blends, and bulk supply from specialty growers",
-    href: "/coffee-beans",
-    image: coffeeImage,
   },
 ];
 
@@ -149,18 +125,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Partnership Categories */}
+      {/* Dynamic Product Carousel */}
       <section className="section-padding bg-secondary">
         <div className="container-main">
           <SectionHeading
-            title="Partnership Categories"
+            title="Our Product Categories"
             subtitle="Explore our curated network of quality partners"
           />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-            {categories.map((category, index) => (
-              <CategoryCard key={index} {...category} />
-            ))}
-          </div>
+          <ProductCarousel />
         </div>
       </section>
 
