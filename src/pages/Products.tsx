@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { MessageCircle } from "lucide-react";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { MessageCircle, UtensilsCrossed, Dumbbell, Coffee } from "lucide-react";
 import fnbImage from "@/assets/fnb-products.jpg";
 import gymImage from "@/assets/ai-gym-equipment.jpg";
 import coffeeImage from "@/assets/coffee-beans.jpg";
@@ -29,29 +30,36 @@ const coffeeProducts = [
 interface ProductCardProps {
   name: string;
   description: string;
-  category: string;
 }
 
-function ProductCard({ name, description, category }: ProductCardProps) {
-  const openBot = () => {
-    // Trigger the QuickBot widget opening
-    const event = new CustomEvent('openQuickBot', { detail: { category } });
-    window.dispatchEvent(event);
-  };
-
+function ProductCard({ name, description }: ProductCardProps) {
   return (
     <div className="p-6 bg-card rounded-xl border border-border shadow-soft hover:shadow-medium transition-all duration-300 hover:-translate-y-1">
       <h3 className="font-serif text-lg font-semibold text-foreground mb-2">{name}</h3>
-      <p className="text-muted-foreground text-sm mb-4">{description}</p>
-      <Button variant="subtle" size="sm" onClick={openBot} className="w-full">
-        <MessageCircle className="h-4 w-4 mr-2" />
-        Enquire
-      </Button>
+      <p className="text-muted-foreground text-sm">{description}</p>
     </div>
   );
 }
 
+const productTabs = [
+  { id: "fnb", label: "F&B Products", icon: <UtensilsCrossed className="h-4 w-4" /> },
+  { id: "gym", label: "AI Gym Equipment", icon: <Dumbbell className="h-4 w-4" /> },
+  { id: "coffee", label: "Coffee Beans", icon: <Coffee className="h-4 w-4" /> },
+];
+
+function scrollToSection(id: string) {
+  const element = document.getElementById(id);
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
 export default function Products() {
+  const openBot = (category: string) => {
+    const event = new CustomEvent('openQuickBot', { detail: { category } });
+    window.dispatchEvent(event);
+  };
+
   return (
     <>
       {/* Hero Section */}
@@ -60,10 +68,27 @@ export default function Products() {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-foreground mb-6">
             Products
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
             Curated partner offerings across categories. Availability and pricing 
             depend on our partners. Contact us for specific requirements.
           </p>
+          
+          {/* Product Tabs */}
+          <Tabs defaultValue="fnb" className="w-full max-w-lg mx-auto">
+            <TabsList className="grid w-full grid-cols-3 h-auto p-1">
+              {productTabs.map((tab) => (
+                <TabsTrigger
+                  key={tab.id}
+                  value={tab.id}
+                  onClick={() => scrollToSection(tab.id)}
+                  className="flex items-center gap-2 py-3 text-xs sm:text-sm"
+                >
+                  {tab.icon}
+                  <span className="hidden sm:inline">{tab.label}</span>
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          </Tabs>
         </div>
       </section>
 
@@ -77,6 +102,10 @@ export default function Products() {
                 subtitle="Premium food and beverage offerings from quality producers"
                 align="left"
               />
+              <Button variant="default" size="lg" onClick={() => openBot("F&B Products")} className="mt-4">
+                <MessageCircle className="h-4 w-4 mr-2" />
+                Enquire About F&B Products
+              </Button>
             </div>
             <div className="aspect-video rounded-2xl overflow-hidden shadow-medium">
               <img
@@ -88,7 +117,7 @@ export default function Products() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {fnbProducts.map((product, index) => (
-              <ProductCard key={index} {...product} category="F&B Products" />
+              <ProductCard key={index} {...product} />
             ))}
           </div>
         </div>
@@ -111,11 +140,15 @@ export default function Products() {
                 subtitle="Smart fitness technology with integrated sensors and tracking"
                 align="left"
               />
+              <Button variant="default" size="lg" onClick={() => openBot("AI Gym Equipment")} className="mt-4">
+                <MessageCircle className="h-4 w-4 mr-2" />
+                Enquire About AI Gym Equipment
+              </Button>
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {gymProducts.map((product, index) => (
-              <ProductCard key={index} {...product} category="AI Gym Equipment" />
+              <ProductCard key={index} {...product} />
             ))}
           </div>
         </div>
@@ -131,6 +164,10 @@ export default function Products() {
                 subtitle="Single-origin, blends, and bulk supply from specialty growers"
                 align="left"
               />
+              <Button variant="default" size="lg" onClick={() => openBot("Coffee Beans")} className="mt-4">
+                <MessageCircle className="h-4 w-4 mr-2" />
+                Enquire About Coffee Beans
+              </Button>
             </div>
             <div className="aspect-video rounded-2xl overflow-hidden shadow-medium">
               <img
@@ -142,7 +179,7 @@ export default function Products() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {coffeeProducts.map((product, index) => (
-              <ProductCard key={index} {...product} category="Coffee Beans" />
+              <ProductCard key={index} {...product} />
             ))}
           </div>
         </div>

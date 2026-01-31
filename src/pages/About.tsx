@@ -1,5 +1,5 @@
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Target, Heart, Shield, Eye, Users } from "lucide-react";
+import { Target, Heart, Shield, Eye, Compass, Lightbulb, Handshake } from "lucide-react";
 
 const values = [
   {
@@ -24,24 +24,6 @@ const values = [
   },
 ];
 
-const team = [
-  {
-    name: "Team Member",
-    role: "Leadership",
-    bio: "Details coming soon",
-  },
-  {
-    name: "Team Member",
-    role: "Operations",
-    bio: "Details coming soon",
-  },
-  {
-    name: "Team Member",
-    role: "Partnerships",
-    bio: "Details coming soon",
-  },
-];
-
 export default function About() {
   return (
     <>
@@ -62,6 +44,9 @@ export default function About() {
       <section className="section-padding bg-background">
         <div className="container-main">
           <div className="max-w-4xl mx-auto text-center">
+            <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mx-auto mb-6">
+              <Compass className="h-8 w-8" />
+            </div>
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-6">
               Our Mission
             </h2>
@@ -71,22 +56,28 @@ export default function About() {
               businesses deserve strategic guidance.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-              <div className="p-6">
-                <div className="text-5xl font-serif font-bold text-primary mb-2">01</div>
+              <div className="p-6 bg-card rounded-xl border border-border">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mx-auto mb-4">
+                  <Lightbulb className="h-6 w-6" />
+                </div>
                 <h3 className="font-serif text-lg font-semibold mb-2">Discover</h3>
                 <p className="text-muted-foreground text-sm">
                   Find quality partners and opportunities
                 </p>
               </div>
-              <div className="p-6">
-                <div className="text-5xl font-serif font-bold text-primary mb-2">02</div>
+              <div className="p-6 bg-card rounded-xl border border-border">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mx-auto mb-4">
+                  <Handshake className="h-6 w-6" />
+                </div>
                 <h3 className="font-serif text-lg font-semibold mb-2">Connect</h3>
                 <p className="text-muted-foreground text-sm">
                   Facilitate meaningful business relationships
                 </p>
               </div>
-              <div className="p-6">
-                <div className="text-5xl font-serif font-bold text-primary mb-2">03</div>
+              <div className="p-6 bg-card rounded-xl border border-border">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mx-auto mb-4">
+                  <Target className="h-6 w-6" />
+                </div>
                 <h3 className="font-serif text-lg font-semibold mb-2">Grow</h3>
                 <p className="text-muted-foreground text-sm">
                   Support sustainable business growth
@@ -117,33 +108,6 @@ export default function About() {
                   {value.title}
                 </h3>
                 <p className="text-muted-foreground text-sm">{value.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Team */}
-      <section className="section-padding bg-background">
-        <div className="container-main">
-          <SectionHeading
-            title="Our Team"
-            subtitle="The people behind Verde Araku"
-          />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {team.map((member, index) => (
-              <div
-                key={index}
-                className="p-8 bg-card rounded-xl border border-border text-center"
-              >
-                <div className="w-20 h-20 rounded-full bg-muted flex items-center justify-center mx-auto mb-4">
-                  <Users className="h-10 w-10 text-muted-foreground/50" />
-                </div>
-                <h3 className="font-serif text-xl font-semibold text-foreground mb-1">
-                  {member.name}
-                </h3>
-                <p className="text-primary text-sm font-medium mb-3">{member.role}</p>
-                <p className="text-muted-foreground text-sm">{member.bio}</p>
               </div>
             ))}
           </div>
